@@ -91,8 +91,7 @@ smart-pantry-explorer/
 1. **Clone Repository**:
 
 ```
-git clone https://github.com/your-username/smart-pantry-explorer.git
-cd smart-pantry-explorer
+git clone https://github.com/valentine2-2/Final-Project/tree/main
 
 ```
 
