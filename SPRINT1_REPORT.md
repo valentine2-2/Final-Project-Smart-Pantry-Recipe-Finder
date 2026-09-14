@@ -1,79 +1,64 @@
-# 📄 SPRINT 1 RESULT REPORT
+# 📄 SPRINT1_REPORT.md
 
 **Project Name:** Smart Pantry & Recipe Finder  
-**Sprint:** 1 (CLI & OOP Foundation)  
-**Date:** September 15, 2026  
+**Sprint:** 1 (Foundation & Core Structure)[cite: 1, 2]  
+**Date:** September 15, 2026[cite: 1, 2]  
 
 ---
 
-## 👥 Team Members & Roles
+## 👥 1. Team Members & Code Responsibilities
 
-* 🏗️ **Planner / Team Leader (Architect):** ไทน์ (Phattharawadee Songsrirod) — *ออกแบบสถาปัตยกรรม OOP และ Data Flow*
-* 🔨 **Coders (Builders):** ฟ่า & ภีม (Sujeephon Poobanchuen & Team) — *เขียนคลาส PantryStore, RecipeManager และประมวลผลระบบ*
-* 🐞 **Debugger (Finisher):** โดนัท — *จัดการ Validation, ตรวจสอบการคำนวณวันหมดอายุ และจัดฟอร์แมต Output*
-
----
-
-## 1. 📌 Sprint Progress Summary
-
-* [x] Defined project scope and Definition of Done (DoD) in `PLAN.md`
-* [x] Designed the CLI main application flow and output formatting
-* [x] Implemented core architecture using Object-Oriented Programming (OOP) classes: `PantryStore`, `RecipeManager`, and `SmartPantryApp`
-* [x] Implemented `PantryStore.add_item()` with item name, quantity, unit, and expiry date (`YYYY-MM-DD`)
-* [x] Implemented `PantryStore.get_expiring_items()` calculating 3-day threshold using Python `datetime`
-* [x] Implemented `RecipeManager.analyze_recipes()` matching pantry contents against target recipes (identifying matched vs. missing ingredients)
-* [x] Implemented automated Shopping List calculation for missing recipe items
-* [x] Added input validation for non-numeric quantities, date formats, and empty strings
-* [x] Added error handling to prevent runtime crashes
-* [x] Conducted comprehensive manual testing on core features and edge cases
-* [x] Tested and delivered code via Pull Request on GitHub
+* **🏗️ Planner (Architect):** ไทน์ (Phattharawadee) — Designed system architecture, flow, UI headers (`display_welcome`, `display_credits`), and continuous execution loop (`main()`)[cite: 1, 2].
+* **🔨 Coders (Builders):** ฟ่า & ภีม (Sujeephon & Team) — Implemented core functions: `add_item()` dictionary storage, `view_pantry()` display, and `search_item()` partial string matching[cite: 1, 2].
+* **🐞 Debugger (Finisher):** โดนัท — Added input validation for empty strings, positive number verification (`qty > 0`), `ValueError` handling, and fallback for invalid commands[cite: 1, 2].
 
 ---
 
-## 2. 🐞 Quality Assurance & Debugging Report
+## 📌 2. Progress Summary & Function Traceability
 
-| Test Item | Input Used | Expected Result | Actual Result | Status |
-| :--- | :--- | :--- | :--- | :--- |
-| **Add Pantry Item** | Name: `egg`, Qty: `3`, Unit: `ฟอง`, Expiry: `2026-09-16` | Record saved and confirm message printed | `✅ เพิ่มวัตถุดิบ: egg (3 ฟอง) [หมดอายุ: 2026-09-16]` | **PASSED** |
-| **Invalid Input Handling** | Qty: `three` or Date: `16-09-2026` | Validation error prompt displayed; no crash | System caught exception and requested valid input | **PASSED** |
-| **Expiring Alert** | Expiry date within 3 days (e.g., `2026-09-16`) | List expiring items with remaining quantity | `⚠️ วัตถุดิบที่กำลังจะหมดอายุใน 3 วัน:`<br>`- egg (เหลือ 3.0 ฟอง, หมดอายุ 2026-09-16)` | **PASSED** |
-| **Recipe Matching** | Pantry contains `egg`, `pork` | Separate matched and missing ingredients for each recipe | `📌 เมนู: ไข่เจียวหมูสับ (Pork Omelette)`<br>`- วัตถุดิบที่มี: egg, pork`<br>`- วัตถุดิบที่ขาด: ไม่มี (ทำได้เลย!)` | **PASSED** |
-| **Shopping List Generation** | Target: "สปาเก็ตตี้คาโบนาร่า (Carbonara)" | Calculate exact quantity needed for missing items | `🛒 Shopping List สำหรับเมนู 'สปาเก็ตตี้คาโบนาร่า (Carbonara)':`<br>`- ซื้อเพิ่ม: spaghetti จำนวน 100`<br>`- ซื้อเพิ่ม: bacon จำนวน 50`<br>`- ซื้อเพิ่ม: cheese จำนวน 30` | **PASSED** |
+* **`display_welcome()` & `display_credits()`**: Renders onboarding banners and attributes team roles[cite: 1, 2].
+* **`add_item(pantry)`**: Saves new items into a dictionary, aggregates quantities for existing items, and validates non-empty names with positive numeric inputs[cite: 1, 2].
+* **`view_pantry(pantry)`**: Displays active stock using `qty.is_integer()` to remove trailing decimals for whole numbers[cite: 1, 2].
+* **`search_item(pantry)`**: Performs case-insensitive partial keyword matching (`keyword in item`)[cite: 1, 2].
+* **`main()`**: Manages main control flow with normalized input processing (`.strip().lower()`)[cite: 1, 2].
 
 ---
 
-## 3. 💬 Weekly Retrospective (Wow! & Whoops!)
+## 🐞 3. Quality Assurance & Debugging Report
 
-### 🌟 Wow! (What went well)
-* Successful separation of concerns using clean OOP architecture (`PantryStore` handling data, `RecipeManager` handling logic, and `SmartPantryApp` driving execution).
-* The algorithm accurately compares pantry inventory against recipe requirements, identifying exact missing quantities for the automated **Shopping List**.
-* Precise date math implementation using Python's `datetime` module for real-time expiry checking.
-* Output formatting is clean, readable, and user-friendly with explicit icons (`✅`, `⚠️`, `🍳`, `🛒`).
-
-### ⚠️ Whoops! (Problems found & Action plan)
-1. **Problem:** Data is stored in-memory (`dict`) and resets when the program terminates.  
-   * **Fix / Next Step:** SQLite database persistence (`pantry.db`) was scope-managed for Sprint 1 and will be integrated in **Sprint 2**.
-2. **Problem:** External API (Spoonacular) is not yet connected; recipes are matched against structured Mock Data.  
-   * **Fix / Next Step:** Real API integration via `requests` is scheduled as a primary task for **Sprint 2**.
-3. **Problem:** No automated test framework (e.g., `pytest`) was included in Sprint 1.  
-   * **Fix / Next Step:** Core functions were verified manually via QA end-to-end testing. Automated unit testing is carried over to **Sprint 2**.
+| Test Item / Function | Input Used | Expected Result | Actual Result | Status |
+| :--- | :--- | :--- | :--- | :---: |
+| **Welcome & Credits** | `credits` | Display team member roles | Showed full team credits correctly | **PASSED**[cite: 1, 2] |
+| **Add New Item** | Name: `egg`, Qty: `12` | Save to pantry dict | `✅ เพิ่มวัตถุดิบ 'egg' จำนวน 12.0 เข้าคลังเรียบร้อย!` | **PASSED**[cite: 1, 2] |
+| **Update Existing Item** | Name: `egg`, Qty: `6` | Aggregate quantity to 18 | `✅ อัปเดตจำนวน 'egg' เพิ่มขึ้น 6.0 (รวมทั้งหมด: 18.0)` | **PASSED**[cite: 1, 2] |
+| **Validation: Empty Name** | Name: ` ` (space) | Block and display error prompt | `❌ ข้อผิดพลาด: ชื่อวัตถุดิบห้ามเป็นค่าว่าง!` | **PASSED**[cite: 1, 2] |
+| **Validation: Non-Numeric** | Qty: `abc` | Catch ValueError gracefully | `❌ ข้อผิดพลาด: กรุณากรอกจำนวนเป็นตัวเลขเท่านั้น!` | **PASSED**[cite: 1, 2] |
+| **Validation: Negative Qty** | Qty: `-5` | Block non-positive values | `❌ ข้อผิดพลาด: จำนวนวัตถุดิบต้องมากกว่า 0!` | **PASSED**[cite: 1, 2] |
+| **View Pantry** | `view` | Display items without trailing `.0` | `• egg: 18` | **PASSED**[cite: 1, 2] |
+| **Search Item** | Keyword: `eg` | Find matching key `egg` | `พบวัตถุดิบที่เกี่ยวข้องกับ 'eg': • egg: 18` | **PASSED**[cite: 1, 2] |
+| **Input Normalization** | ` ADD `, `QUIT` | Strip spaces and lowercase | Commands routed without syntax errors | **PASSED**[cite: 1, 2] |
+| **Invalid Command** | `delete` | Prompt invalid command alert | `❌ คำสั่งไม่ถูกต้อง กรุณากรอกพิมพ์คำสั่ง...` | **PASSED**[cite: 1, 2] |
 
 ---
 
-## 4. ✅ Definition of Done — Sprint 1 Status
+## 💬 4. Weekly Retrospective (Wow! & Whoops!)
 
-Derived from the project-wide DoD in `PLAN.md`, scoped to Sprint 1 deliverables:
+**🌟 Wow! (What Went Well)**
+* **Robust Input Validation:** Donut's validation logic prevents application crashes across empty strings, non-numerics, and negative values[cite: 1, 2].
+* **Partial Search Utility:** Peem's search logic allows locating items using partial keywords[cite: 1, 2].
+* **Clean Number Rendering:** `qty.is_integer()` converts floats like `12.0` to `12` while preserving decimal values[cite: 1, 2].
+* **User Interface Polish:** Command normalization ensures robust navigation regardless of capitalization or whitespace[cite: 1, 2].
 
-* [x] Core feature works according to requirements (Pantry tracking, Expiry checking, Recipe matching, Shopping list output)
-* [x] User input is validated (quantity formatting, date parsing, empty checks)
-* [x] Errors are handled gracefully without program crashes
-* [x] Code strictly follows modular OOP structure (`PantryStore`, `RecipeManager`, `SmartPantryApp`)
-* [ ] **Automated test suite implemented** — *Not met:* Verified via manual QA; `pytest` suite carried over to Sprint 2.
-* [x] Interface functions correctly in CLI
-* [x] Technical implementation documented via docstrings and `PLAN.md`
-* [ ] **Connected to real Spoonacular API** — *Not met:* Mock data used for Sprint 1 prototype; real API carried over to Sprint 2.
-* [ ] **Data persisted to SQLite** — *Not met:* In-memory storage used for Sprint 1; SQLite integration carried over to Sprint 2.
-* [x] Tested and delivered via Pull Request on GitHub
+**⚠️ Whoops! (Found & Action Plan)**
+* **In-Memory Storage Only:** Data resets when the program terminates; action plan is to migrate to SQLite in Sprint 2[cite: 1, 2].
+* **Flat Quantity Structure:** Pantry maps `string -> float` without units or expiry dates; action plan is to refactor data structures to OOP classes in Sprint 2[cite: 1, 2].
+* **No Recipe Engine Yet:** Sprint 1 focused on Pantry CLI foundation; action plan is to implement Recipe Finder and Spoonacular API in Sprint 2[cite: 1, 2].
 
-**Overall Status:** **Sprint 1 Core Delivered (with planned carry-overs)**  
-The core OOP structure and business logic run end-to-end successfully. Three items carry over to Sprint 2: (1) Real API integration, (2) SQLite database persistence, and (3) Automated testing suite (`pytest`).
+---
+
+## 🚀 5. Sprint 2 Roadmap & Transition Plan
+
+* **OOP Refactoring:** Convert procedural functions into `PantryStore`, `RecipeManager`, and `SmartPantryApp` classes[cite: 1, 2].
+* **Expiry & Unit Tracking:** Support units (grams, pcs) and expiry date calculations using `datetime`[cite: 1, 2].
+* **Recipe Matching Engine:** Match inventory with recipes and calculate Shopping Lists[cite: 1, 2].
+* **Database Integration:** SQLite persistence to store user inventory permanently[cite: 1, 2].
