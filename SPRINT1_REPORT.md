@@ -8,8 +8,8 @@
 
 ## 👥 1. สมาชิกในทีมและหน้าที่ความรับผิดชอบในโค้ด
 
-* **🏗️ ผู้ดูแลโครงสร้างระบบ (Planner / Architect):** ไทน์ (Phattharawadee) — ออกแบบสถาปัตยกรรมระบบ, โฟลว์การทำงาน, ส่วนหัว UI (`display_welcome`, `display_credits`) และการวนลูปประมวลผลหลัก (`main()`)[cite: 1, 2]
-* **🔨 ทีมพัฒนาโค้ด (Coders / Builders):** ฟ่า & ภีม (Sujeephon & Team) — พัฒนาฟังก์ชันหลัก ได้แก่ จัดเก็บข้อมูลลง dictionary ใน `add_item()`, แสดงรายการใน `view_pantry()`, และการค้นหาแบบ Partial String Matching ใน `search_item()`[cite: 1, 2]
+* **🏗️ ผู้ดูแลโครงสร้างระบบ (Planner / Architect):** ไทน์  — ออกแบบสถาปัตยกรรมระบบ, โฟลว์การทำงาน, ส่วนหัว UI (`display_welcome`, `display_credits`) และการวนลูปประมวลผลหลัก (`main()`)[cite: 1, 2]
+* **🔨 ทีมพัฒนาโค้ด (Coders / Builders):** ฟ่า & ภีม  — พัฒนาฟังก์ชันหลัก ได้แก่ จัดเก็บข้อมูลลง dictionary ใน `add_item()`, แสดงรายการใน `view_pantry()`, และการค้นหาแบบ Partial String Matching ใน `search_item()`[cite: 1, 2]
 * **🐞 ตรวจสอบและแก้ไขข้อผิดพลาด (Debugger / Finisher):** โดนัท — เพิ่มการตรวจสอบความถูกต้องของข้อมูล (Input Validation) สำหรับข้อความว่างเปล่า, ตรวจสอบตัวเลขบวก (`qty > 0`), ดักจับ `ValueError`, และจัดการคำสั่งที่ไม่ถูกต้อง[cite: 1, 2]
 
 ---
