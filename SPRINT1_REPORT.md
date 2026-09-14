@@ -1,64 +1,64 @@
 # 📄 SPRINT1_REPORT.md
 
-**Project Name:** Smart Pantry & Recipe Finder  
-**Sprint:** 1 (Foundation & Core Structure)[cite: 1, 2]  
-**Date:** September 15, 2026[cite: 1, 2]  
+**ชื่อโปรเจกต์:** Smart Pantry & Recipe Finder  
+**Sprint:** 1 (รากฐานและโครงสร้างหลัก / Foundation & Core Structure)[cite: 1, 2]  
+**วันที่:** 15 กันยายน 2026[cite: 1, 2]  
 
 ---
 
-## 👥 1. Team Members & Code Responsibilities
+## 👥 1. สมาชิกในทีมและหน้าที่ความรับผิดชอบในโค้ด
 
-* **🏗️ Planner (Architect):** ไทน์ (Phattharawadee) — Designed system architecture, flow, UI headers (`display_welcome`, `display_credits`), and continuous execution loop (`main()`)[cite: 1, 2].
-* **🔨 Coders (Builders):** ฟ่า & ภีม (Sujeephon & Team) — Implemented core functions: `add_item()` dictionary storage, `view_pantry()` display, and `search_item()` partial string matching[cite: 1, 2].
-* **🐞 Debugger (Finisher):** โดนัท — Added input validation for empty strings, positive number verification (`qty > 0`), `ValueError` handling, and fallback for invalid commands[cite: 1, 2].
-
----
-
-## 📌 2. Progress Summary & Function Traceability
-
-* **`display_welcome()` & `display_credits()`**: Renders onboarding banners and attributes team roles[cite: 1, 2].
-* **`add_item(pantry)`**: Saves new items into a dictionary, aggregates quantities for existing items, and validates non-empty names with positive numeric inputs[cite: 1, 2].
-* **`view_pantry(pantry)`**: Displays active stock using `qty.is_integer()` to remove trailing decimals for whole numbers[cite: 1, 2].
-* **`search_item(pantry)`**: Performs case-insensitive partial keyword matching (`keyword in item`)[cite: 1, 2].
-* **`main()`**: Manages main control flow with normalized input processing (`.strip().lower()`)[cite: 1, 2].
+* **🏗️ ผู้ดูแลโครงสร้างระบบ (Planner / Architect):** ไทน์ (Phattharawadee) — ออกแบบสถาปัตยกรรมระบบ, โฟลว์การทำงาน, ส่วนหัว UI (`display_welcome`, `display_credits`) และการวนลูปประมวลผลหลัก (`main()`)[cite: 1, 2]
+* **🔨 ทีมพัฒนาโค้ด (Coders / Builders):** ฟ่า & ภีม (Sujeephon & Team) — พัฒนาฟังก์ชันหลัก ได้แก่ จัดเก็บข้อมูลลง dictionary ใน `add_item()`, แสดงรายการใน `view_pantry()`, และการค้นหาแบบ Partial String Matching ใน `search_item()`[cite: 1, 2]
+* **🐞 ตรวจสอบและแก้ไขข้อผิดพลาด (Debugger / Finisher):** โดนัท — เพิ่มการตรวจสอบความถูกต้องของข้อมูล (Input Validation) สำหรับข้อความว่างเปล่า, ตรวจสอบตัวเลขบวก (`qty > 0`), ดักจับ `ValueError`, และจัดการคำสั่งที่ไม่ถูกต้อง[cite: 1, 2]
 
 ---
 
-## 🐞 3. Quality Assurance & Debugging Report
+## 📌 2. สรุปความก้าวหน้าและการสืบย้อนฟังก์ชัน
 
-| Test Item / Function | Input Used | Expected Result | Actual Result | Status |
+* **`display_welcome()` & `display_credits()`**: แสดงแบนเนอร์ต้อนรับและแสดงบทบาทหน้าที่ของสมาชิกในทีม[cite: 1, 2]
+* **`add_item(pantry)`**: บันทึกวัตถุดิบใหม่ลง dictionary, สะสมจำนวนวัตถุดิบเดิม, และตรวจสอบว่าชื่อไม่เป็นค่าว่างพร้อมจำนวนตัวเลขที่เป็นบวก[cite: 1, 2]
+* **`view_pantry(pantry)`**: แสดงรายการวัตถุดิบที่มี โดยใช้ `qty.is_integer()` ตัดจุดทศนิยมออกสำหรับจำนวนเต็ม[cite: 1, 2]
+* **`search_item(pantry)`**: ค้นหาวัตถุดิบแบบ Partial Match โดยไม่สนตัวพิมพ์เล็ก-ใหญ่ (`keyword in item`)[cite: 1, 2]
+* **`main()`**: ควบคุมการทำงานหลักของโปรแกรมพร้อมแปลงรูปแบบคำสั่งด้วย (`.strip().lower()`)[cite: 1, 2]
+
+---
+
+## 🐞 3. รายงานการทดสอบและประกันคุณภาพ (QA & Debugging Report)
+
+| หัวข้อทดสอบ / ฟังก์ชัน | ค่าที่ป้อน (Input Used) | ผลลัพธ์ที่คาดหวัง | ผลลัพธ์จริงจากโค้ด | สถานะ |
 | :--- | :--- | :--- | :--- | :---: |
-| **Welcome & Credits** | `credits` | Display team member roles | Showed full team credits correctly | **PASSED**[cite: 1, 2] |
-| **Add New Item** | Name: `egg`, Qty: `12` | Save to pantry dict | `✅ เพิ่มวัตถุดิบ 'egg' จำนวน 12.0 เข้าคลังเรียบร้อย!` | **PASSED**[cite: 1, 2] |
-| **Update Existing Item** | Name: `egg`, Qty: `6` | Aggregate quantity to 18 | `✅ อัปเดตจำนวน 'egg' เพิ่มขึ้น 6.0 (รวมทั้งหมด: 18.0)` | **PASSED**[cite: 1, 2] |
-| **Validation: Empty Name** | Name: ` ` (space) | Block and display error prompt | `❌ ข้อผิดพลาด: ชื่อวัตถุดิบห้ามเป็นค่าว่าง!` | **PASSED**[cite: 1, 2] |
-| **Validation: Non-Numeric** | Qty: `abc` | Catch ValueError gracefully | `❌ ข้อผิดพลาด: กรุณากรอกจำนวนเป็นตัวเลขเท่านั้น!` | **PASSED**[cite: 1, 2] |
-| **Validation: Negative Qty** | Qty: `-5` | Block non-positive values | `❌ ข้อผิดพลาด: จำนวนวัตถุดิบต้องมากกว่า 0!` | **PASSED**[cite: 1, 2] |
-| **View Pantry** | `view` | Display items without trailing `.0` | `• egg: 18` | **PASSED**[cite: 1, 2] |
-| **Search Item** | Keyword: `eg` | Find matching key `egg` | `พบวัตถุดิบที่เกี่ยวข้องกับ 'eg': • egg: 18` | **PASSED**[cite: 1, 2] |
-| **Input Normalization** | ` ADD `, `QUIT` | Strip spaces and lowercase | Commands routed without syntax errors | **PASSED**[cite: 1, 2] |
-| **Invalid Command** | `delete` | Prompt invalid command alert | `❌ คำสั่งไม่ถูกต้อง กรุณากรอกพิมพ์คำสั่ง...` | **PASSED**[cite: 1, 2] |
+| **Welcome & Credits** | `credits` | แสดงบทบาทของสมาชิกในทีม | แสดงรายชื่อและบทบาททีมงานครบถ้วน | **PASSED**[cite: 1, 2] |
+| **Add New Item** | ชื่อ: `egg`, จำนวน: `12` | บันทึกลง Dictionary | `✅ เพิ่มวัตถุดิบ 'egg' จำนวน 12.0 เข้าคลังเรียบร้อย!` | **PASSED**[cite: 1, 2] |
+| **Update Existing Item** | ชื่อ: `egg`, จำนวน: `6` | รวมจำนวนเดิมเป็น 18 | `✅ อัปเดตจำนวน 'egg' เพิ่มขึ้น 6.0 (รวมทั้งหมด: 18.0)` | **PASSED**[cite: 1, 2] |
+| **Validation: Empty Name** | ชื่อ: ` ` (เว้นวรรค) | ไม่อนุญาตและแจ้งเตือนข้อผิดพลาด | `❌ ข้อผิดพลาด: ชื่อวัตถุดิบห้ามเป็นค่าว่าง!` | **PASSED**[cite: 1, 2] |
+| **Validation: Non-Numeric** | จำนวน: `abc` | ดักจับ ValueError โดยไม่ค้าง | `❌ ข้อผิดพลาด: กรุณากรอกจำนวนเป็นตัวเลขเท่านั้น!` | **PASSED**[cite: 1, 2] |
+| **Validation: Negative Qty** | จำนวน: `-5` | ไม่อนุญาตค่าติดลบหรือศูนย์ | `❌ ข้อผิดพลาด: จำนวนวัตถุดิบต้องมากกว่า 0!` | **PASSED**[cite: 1, 2] |
+| **View Pantry** | `view` | แสดงรายการโดยตัด `.0` ออก | `• egg: 18` | **PASSED**[cite: 1, 2] |
+| **Search Item** | ค้นหา: `eg` | พบวัตถุดิบที่ตรงกับคำว่า `egg` | `พบวัตถุดิบที่เกี่ยวข้องกับ 'eg': • egg: 18` | **PASSED**[cite: 1, 2] |
+| **Input Normalization** | ` ADD `, `QUIT` | ตัดช่องว่างและปรับเป็นตัวพิมพ์เล็ก | ระบบเข้าสู่เมนูได้ถูกต้องโดยไม่มีข้อผิดพลาด | **PASSED**[cite: 1, 2] |
+| **Invalid Command** | `delete` | แสดงข้อความแจ้งเตือนคำสั่งผิด | `❌ คำสั่งไม่ถูกต้อง กรุณากรอกพิมพ์คำสั่ง...` | **PASSED**[cite: 1, 2] |
 
 ---
 
-## 💬 4. Weekly Retrospective (Wow! & Whoops!)
+## 💬 4. ทบทวนการทำงานประจำสัปดาห์ (Weekly Retrospective)
 
-**🌟 Wow! (What Went Well)**
-* **Robust Input Validation:** Donut's validation logic prevents application crashes across empty strings, non-numerics, and negative values[cite: 1, 2].
-* **Partial Search Utility:** Peem's search logic allows locating items using partial keywords[cite: 1, 2].
-* **Clean Number Rendering:** `qty.is_integer()` converts floats like `12.0` to `12` while preserving decimal values[cite: 1, 2].
-* **User Interface Polish:** Command normalization ensures robust navigation regardless of capitalization or whitespace[cite: 1, 2].
+**🌟 Wow! (สิ่งที่ดีเยี่ยม)**
+* **Input Validation รัดกุม:** โดนัทสร้าง Logic ดักจับข้อผิดพลาด ป้องกันโปรแกรม Crash จากค่าว่าง ตัวอักษรแทนตัวเลข และเลขติดลบ[cite: 1, 2]
+* **ค้นหาแบบ Partial Match มีประโยชน์:** ภีมเขียนระบบค้นหาที่ช่วยให้เจอวัตถุดิบแม้พิมพ์แค่บางส่วน[cite: 1, 2]
+* **แสดงผลตัวเลขสะอาด:** `qty.is_integer()` แปลง float เช่น `12.0` เป็น `12` โดยยังคงค่าทศนิยมจริงไว้[cite: 1, 2]
+* **UI ลื่นไหล:** การตัดช่องว่างและปรับตัวพิมพ์เล็กช่วยให้ผู้ใช้พิมพ์คำสั่งผิดได้ยากขึ้น[cite: 1, 2]
 
-**⚠️ Whoops! (Found & Action Plan)**
-* **In-Memory Storage Only:** Data resets when the program terminates; action plan is to migrate to SQLite in Sprint 2[cite: 1, 2].
-* **Flat Quantity Structure:** Pantry maps `string -> float` without units or expiry dates; action plan is to refactor data structures to OOP classes in Sprint 2[cite: 1, 2].
-* **No Recipe Engine Yet:** Sprint 1 focused on Pantry CLI foundation; action plan is to implement Recipe Finder and Spoonacular API in Sprint 2[cite: 1, 2].
+**⚠️ Whoops! (ปัญหาที่พบ & แผนรับมือ)**
+* **จัดเก็บข้อมูลในหน่วยความจำเท่านั้น:** ข้อมูลลบหายเมื่อปิดโปรแกรม; แผนรับมือคือย้ายไปใช้ SQLite ใน Sprint 2[cite: 1, 2]
+* **โครงสร้างจำนวนแบบเรียบง่าย:** Pantry เก็บแบบ `string -> float` ไม่มีหน่วยนับหรือวันหมดอายุ; แผนรับมือคือปรับโครงสร้างเป็น OOP ใน Sprint 2[cite: 1, 2]
+* **ยังไม่มีระบบแนะนำเมนูอาหาร:** Sprint 1 เน้นรากฐานคลังวัตถุดิบ; แผนรับมือคือพัฒนา Recipe Finder และเชื่อมต่อ Spoonacular API ใน Sprint 2[cite: 1, 2]
 
 ---
 
-## 🚀 5. Sprint 2 Roadmap & Transition Plan
+## 🚀 5. แผนการดำเนินงานและเป้าหมายใน Sprint 2
 
-* **OOP Refactoring:** Convert procedural functions into `PantryStore`, `RecipeManager`, and `SmartPantryApp` classes[cite: 1, 2].
-* **Expiry & Unit Tracking:** Support units (grams, pcs) and expiry date calculations using `datetime`[cite: 1, 2].
-* **Recipe Matching Engine:** Match inventory with recipes and calculate Shopping Lists[cite: 1, 2].
-* **Database Integration:** SQLite persistence to store user inventory permanently[cite: 1, 2].
+* **ปรับโครงสร้างเป็น OOP:** แปลงฟังก์ชันแบบ Procedural ให้เป็นคลาส `PantryStore`, `RecipeManager`, และ `SmartPantryApp`[cite: 1, 2]
+* **ระบบติดตามวันหมดอายุและหน่วยนับ:** รองรับหน่วยนับ (เช่น กรัม, ชิ้น) และคำนวณวันหมดอายุด้วย `datetime`[cite: 1, 2]
+* **ระบบจับคู่เมนูอาหาร:** จับคู่วัตถุดิบในคลังกับเมนูอาหาร และคำนวณ Shopping List อัตโนมัติ[cite: 1, 2]
+* **เชื่อมต่อฐานข้อมูล:** ใช้งาน SQLite เพื่อบันทึกข้อมูลคลังวัตถุดิบอย่างถาวร[cite: 1, 2]
