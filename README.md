@@ -122,3 +122,4 @@ python main.py
 
 ---
 ``` colab : https://colab.research.google.com/drive/17ruN8fSqye794a1xrmR9kkMVXiJzimi9#scrollTo=7O1oXHxpcI8s
+    canva : https://www.canva.com/design/DAHVMfQC_Cg/vj9X-9j4xD6nj66K5EqQng/edit
